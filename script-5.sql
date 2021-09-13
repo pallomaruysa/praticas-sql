@@ -19,6 +19,7 @@ insert into cliente values( 10,'00010','DAHLKEMPER '           ,'DAHLKEMPER  LTD
 -- alterando atributos da tabela cliente
 alter table cliente add column cidade varchar(50);
 alter table cliente add column estado varchar(2);
+alter table cliente modify estado char(2);
 
 -- testando codigo que retorna a proxima sequencia a ser inserido na table -> tabela cliente
 select auto_increment from information_schema.tables where TABLE_NAME ='vendedor' and TABLE_SCHEMA ='loja';
@@ -29,6 +30,7 @@ select * from vendedor;
 ## Inicio popula tabela Vendedores
 insert into vendedor values(null,'0001','CARLOS FERNANDES','CARLOS FERNANDES LTDA',  '(47) 7535-8144',12  );
 insert into vendedor values(null,'0002','JÚLIA GOMES','JÚLIA GOMES LTDA',       '(12) 8037-6661',25  );
+insert into vendedor (codigo_vendedor, nome, razao_vende, telefone, n_porcvende)values('0003','PALLOMA RUYSA','PALLOMA RUYSA LTDA','(71) 8037-6661',23  );
 ## Fim popula tabela Vendedores
 -- deletando tupla duplicada
 delete from vendedor where id = 3;
@@ -43,39 +45,42 @@ insert into fornecedor values( 5, 'SEWFRO FABRICS'           ,'0002', '(91) 5171
 desc produto ; 
 select * from produto; -- *** VERIFICAR 
 ## Inicio popula tabela Produtos
-insert into produto values(null ,'NOTEBOOK' ,  1 ,'123131','1251.29'  ,'A' );
-insert into produto values( null ,'SMARTPHONE', 2  , '123223','1242.21'  ,'A');
-insert into produto values( null ,'DESKTOP' , 1 , '1231','1241.21'  ,'A' );
-insert into produto values( null,'TELEVISÃO', 2 , '142123' ,'2564.92'  ,'A' );
-insert into produto values( null,'DRONE'  , 1  , '7684','2325.32'  ,'A');
+insert into produto values(null ,'NOTEBOOK' ,  1 ,'123131','1251.29'  ,'A' ); -- 4
+insert into produto values( null ,'SMARTPHONE', 2  , '123223','1242.21'  ,'A');-- 5
+insert into produto values( null ,'DESKTOP' , 1 , '1231','1241.21'  ,'A' );-- 4
+insert into produto values( null,'TELEVISÃO', 2 , '142123' ,'2564.92'  ,'A' );-- 5
+insert into produto values( null,'DRONE'  , 1  , '7684','2325.32'  ,'A');-- 4
 ## Fim popula tabela Produtos
 -- deletando tupla duplicada
-delete from produto p where id = 12;
+delete from fornecedor where id = 6;
+update produto set id_fornecedor = 4 where id =11;
 
 desc venda;
 select * from venda;
 ## Inicio popula tabela Vendas  
-insert into venda values(1    , '1'    , 1 , 1 , 1 ,  '25141.02'  , 0 , '25141.02'  ,  '2015-01-01' );
-insert into venda values(2    , '2'    , 2 , 2 , 2 ,  '12476.58'  , 0 , '12476.58'  ,  '2015-01-02' );
-insert into venda values(3    , '3'    , 3 , 1 , 1 ,  '16257.32'  , 0 , '16257.32'  ,  '2015-01-03' );
-insert into venda values(4    , '4'    , 4 , 2 , 2 ,  '8704.55',    0 , '8704.55'   ,  '2015-01-04' );
-insert into venda values(5    , '5'    , 5 , 1 , 1 ,  '13078.81', 0 , '13078.81'  ,  '2015-01-01' );
-insert into venda values(6    , '6'    , 6 , 2 , 2 ,  '6079.19',    0 , '6079.19'   ,  '2015-01-02' );
-insert into venda values(7    , '7'    , 7 , 1 , 1 ,  '7451.26',    0 , '7451.26'   ,  '2015-01-03' );
-insert into venda values(8    , '8'    , 8 , 2 , 2 ,  '15380.47', 0 , '15380.47'  ,  '2015-01-04' );
-insert into venda values(9    , '9'    , 9 , 1 , 1 ,  '13508.34', 0 , '13508.34'  ,  '2015-01-01' );
-insert into venda values(10    , '10' , 1 , 2 , 2 ,  '20315.07', 0 , '20315.07'  ,  '2015-01-02' );
-insert into venda values(11    , '11' , 1 , 1 , 1 ,  '8704.55',    0 , '8704.55'   ,  '2015-01-01' );
-insert into venda values(12    , '12' , 2 , 2 , 2 ,  '11198.05', 0 , '11198.05'  ,  '2015-01-02' );
-insert into venda values(13    , '13' , 3 , 1 , 1 ,  '4967.84',    0 , '4967.84'   ,  '2015-01-03' );
-insert into venda values(14    , '14' , 3 , 2 , 2 ,  '7451.26',    0 , '7451.26'   ,  '2015-01-04' );
-insert into venda values(15    , '15' , 5 , 1 , 1 ,  '10747.359', 0 , '10747.36'  ,  '2015-01-01' );
-insert into venda values(16    , '16' , 6 , 2 , 2 ,  '13502.34', 0 , '13502.34'  ,  '2015-01-02' );
-insert into venda values(17    , '17' , 7 , 1 , 1 ,  '22222.99', 0 , '22222.99'  ,  '2015-01-03' );
-insert into venda values(18    , '18' , 8 , 2 , 2 ,  '15465.69', 0 , '15465.69'  ,  '2015-01-04' );
-insert into venda values(19    , '19' , 9 , 1 , 1 ,  '4650.64',    0 , '4650.64'   ,  '2015-01-01' );
-insert into venda values(20    , '20' , 9 , 2 , 2 ,  '6975.96',    0 , '6975.96'   ,  '2015-01-02' );
-## Fim popula tabela Vendas
+insert into venda values(1    , '1'  , 1 , 1 , 1 ,  '25141.02'  , 0 , '25141.02'  ,  '2015-01-01' );
+insert into venda values(2    , '2'  , 2 , 2 , 2 ,  '12476.58'  , 0 , '12476.58'  ,  '2015-01-02' );
+insert into venda values(3    , '3'  , 3 , 1 , 1 ,  '16257.32'  , 0 , '16257.32'  ,  '2015-01-03' );
+insert into venda values(4    , '4'  , 4 , 2 , 2 ,  '8704.55',    0 , '8704.55'   ,  '2015-01-04' );
+insert into venda values(5    , '5'  , 5 , 1 , 1 ,  '13078.81', 0 , '13078.81'  ,  '2015-01-01' );
+insert into venda values(6    , '6'  , 6 , 2 , 2 ,  '6079.19',    0 , '6079.19'   ,  '2015-01-02' );
+insert into venda values(7    , '7'  , 7 , 1 , 1 ,  '7451.26',    0 , '7451.26'   ,  '2015-01-03' );
+insert into venda values(8    , '8'  , 8 , 2 , 2 ,  '15380.47', 0 , '15380.47'  ,  '2015-01-04' );
+insert into venda values(9    , '9'	 , 9 , 1 , 1 ,  '13508.34', 0 , '13508.34'  ,  '2015-01-01' );
+insert into venda values(10   , '10' , 1 , 2 , 2 ,  '20315.07', 0 , '20315.07'  ,  '2015-01-02' );
+insert into venda values(11   , '11' , 1 , 1 , 1 ,  '8704.55',    0 , '8704.55'   ,  '2015-01-01' );
+insert into venda values(12   , '12' , 2 , 2 , 2 ,  '11198.05', 0 , '11198.05'  ,  '2015-01-02' );
+insert into venda values(13   , '13' , 3 , 1 , 1 ,  '4967.84',    0 , '4967.84'   ,  '2015-01-03' );
+insert into venda values(14   , '14' , 3 , 2 , 2 ,  '7451.26',    0 , '7451.26'   ,  '2015-01-04' );
+insert into venda values(15   , '15' , 5 , 1 , 1 ,  '10747.359', 0 , '10747.36'  ,  '2015-01-01' );
+insert into venda values(16   , '16' , 6 , 2 , 2 ,  '13502.34', 0 , '13502.34'  ,  '2015-01-02' );
+insert into venda values(17   , '17' , 7 , 1 , 1 ,  '22222.99', 0 , '22222.99'  ,  '2015-01-03' );
+insert into venda values(18   , '18' , 8 , 2 , 2 ,  '15465.69', 0 , '15465.69'  ,  '2015-01-04' );
+insert into venda values(19   , '19' , 9 , 1 , 1 ,  '4650.64',    0 , '4650.64'   ,  '2015-01-01' );
+insert into venda values(20   , '20' , 9 , 2 , 2 ,  '6975.96',    0 , '6975.96'   ,  '2015-01-02' );
+## Fim popula tabela Vendas;
+-- feito para numeros impares também
+update venda set id_fornecedor = 5 where id in (2,4,6,8,10,12,14,16,18,20);
 
 
 desc item_venda;
@@ -130,3 +135,21 @@ select AUTO_INCREMENT
 from information_schema.tables 
 where TABLE_NAME ='produto' 
 and TABLE_SCHEMA ='loja';
+
+-- colocando valor padrao, quando não inserido na tabela
+create table t2(b blob default ('abc'), sigla_estado char(2));
+select * from t2;
+insert t2 (sigla_estado) values ('RS');
+insert t2 (sigla_estado, b) values ('BA', 'Palloma');
+drop table t2;
+
+create table t3 (situacao boolean default true, nome varchar(5),
+	data_cadastro datetime default now()); 
+select * from t3;
+insert into t3(nome) values('bota');
+insert into t3(nome, situacao) values('bota', false);
+drop table t3;
+
+-- selecionando todos do id para modificar
+select * from item_venda where id_produto =1;
+update item_venda set id_produto = 11 where id_produto =5;

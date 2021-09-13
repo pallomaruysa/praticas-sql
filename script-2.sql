@@ -50,3 +50,5 @@ alter table produto add column valor float(10,2);
 alter table produto add column situacao varchar(1);
 
 desc produto;
+select * from produto;
+select * from item_venda;
