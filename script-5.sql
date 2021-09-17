@@ -151,5 +151,5 @@ insert into t3(nome, situacao) values('bota', false);
 drop table t3;
 
 -- selecionando todos do id para modificar
-select * from item_venda where id_produto =1;
+select * from item_venda where id_produto =10;
 update item_venda set id_produto = 11 where id_produto =5;
