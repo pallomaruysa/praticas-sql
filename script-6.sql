@@ -182,5 +182,5 @@ from cliente;
 
 --                 ALICIO                alicio
 select UCASE('alicio') 'as', lCASE('ALICIO')'ds';
-inner join fornecedor f on f.id = p.id_fornecedor
+
 

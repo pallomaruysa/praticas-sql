@@ -52,7 +52,13 @@ create procedure gerar_comissao(in data_inicial date,     -- parametro de entrad
 
         -- evitando que retorne qualquer erro
 
-          
+        declare 
+
+        continue handler -- --> manipulador
+
+        for sqlstate '02000' 
+
+        set fimloop  = 1;    
 
         
 
