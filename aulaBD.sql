@@ -208,11 +208,21 @@ from tb_funcionario tf
 order by codigo;
 
 
+select * from tb_enderecos te;
+desc tb_enderecos;
+
+insert into tb_enderecos(logradouro, bairro, estado, cep) values("Aman", "Candeal", "BA", 43434);
+insert into tb_enderecos(logradouro, bairro, estado, cep) values("Jonas Abel", "Candeal", "BA", 456754);
+insert into tb_enderecos(logradouro, bairro, estado, cep) values("Vianna Algusta", "Brotas", "BA", 654333);
+insert into tb_enderecos(logradouro, bairro, estado, cep) values("Baus Antigos", "Candeias", "BA", 45543);
+insert into tb_enderecos(logradouro, bairro, estado, cep) values("Alvedo Andre", "Iatigara", "BA", 544233);
+insert into tb_enderecos(logradouro, bairro, estado, cep) values("Joana Agelica", "Lapa", "BA", 53432);
+insert into tb_enderecos(logradouro, bairro, estado, cep) values("Pituaban", "Mussurunga", "BA", 44534);
 
 
 
-
-
+insert into tb_funcionario(nome, sobrenome, cpf, rg, codigo_setor, salario,comissao) 
+values("Ruy", "Soares", 9384343, 4348373, 2, '999.00', 13);
 
 
 
