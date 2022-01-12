@@ -16,9 +16,9 @@ create procedure gerar_comissao(in data_inicial date,     -- parametro de entrad
 
         declare vendedor     int default 0;
 
-        declare    vl_comissao float(5,2) default 0;
+        declare vl_comissao float(5,2) default 0;
 
-        declare    valor_total_comissao float(10,2) default 0;
+        declare valor_total_comissao float(10,2) default 0;
 
         declare aux         int default 0;
 
@@ -112,13 +112,12 @@ create procedure gerar_comissao(in data_inicial date,     -- parametro de entrad
 
                     
 
-                update     venda 
+                update   	venda 
 
-                set     vl_comissao = valor_total_comissao
+                set     	vl_comissao = valor_total_comissao
 
-                where     codigo_venda = venda;
+                where  		codigo_venda = venda;
 
-                
 
                 commit;
 
